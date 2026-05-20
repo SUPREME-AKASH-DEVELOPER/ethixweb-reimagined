@@ -1,0 +1,99 @@
+import { useEffect, useState } from "react";
+import { Link } from "@tanstack/react-router";
+import { motion, AnimatePresence } from "framer-motion";
+import { Menu, X, ArrowUpRight } from "lucide-react";
+import { Logo } from "./Logo";
+
+const links = [
+  { to: "/", label: "Home" },
+  { to: "/about", label: "About" },
+  { to: "/services", label: "Services" },
+  { to: "/portfolio", label: "Work" },
+  { to: "/blog", label: "Blog" },
+  { to: "/careers", label: "Careers" },
+];
+
+export function Navbar() {
+  const [open, setOpen] = useState(false);
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 20);
+    onScroll();
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  return (
+    <header className="fixed top-0 inset-x-0 z-50 px-4 pt-4">
+      <div
+        className={`mx-auto max-w-7xl rounded-2xl transition-all duration-500 ${
+          scrolled ? "glass-strong shadow-elegant" : "bg-transparent"
+        }`}
+      >
+        <div className="flex items-center justify-between px-5 py-3">
+          <Logo />
+          <nav className="hidden lg:flex items-center gap-1">
+            {links.map((l) => (
+              <Link
+                key={l.to}
+                to={l.to}
+                className="px-4 py-2 text-sm text-muted-foreground hover:text-foreground transition-colors rounded-lg hover:bg-white/5"
+                activeProps={{ className: "px-4 py-2 text-sm text-foreground rounded-lg bg-white/5" }}
+                activeOptions={{ exact: l.to === "/" }}
+              >
+                {l.label}
+              </Link>
+            ))}
+          </nav>
+          <div className="hidden lg:flex items-center gap-3">
+            <Link
+              to="/contact"
+              className="group inline-flex items-center gap-2 rounded-full bg-gradient-brand px-5 py-2.5 text-sm font-medium text-primary-foreground shadow-glow hover:scale-[1.03] transition-transform"
+            >
+              Start a project
+              <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+            </Link>
+          </div>
+          <button
+            className="lg:hidden p-2 rounded-lg glass"
+            onClick={() => setOpen((v) => !v)}
+            aria-label="Menu"
+          >
+            {open ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
+        </div>
+        <AnimatePresence>
+          {open && (
+            <motion.div
+              initial={{ height: 0, opacity: 0 }}
+              animate={{ height: "auto", opacity: 1 }}
+              exit={{ height: 0, opacity: 0 }}
+              className="lg:hidden overflow-hidden border-t border-white/5"
+            >
+              <div className="flex flex-col gap-1 p-4">
+                {links.map((l) => (
+                  <Link
+                    key={l.to}
+                    to={l.to}
+                    onClick={() => setOpen(false)}
+                    className="px-4 py-3 rounded-lg hover:bg-white/5 text-foreground"
+                  >
+                    {l.label}
+                  </Link>
+                ))}
+                <Link
+                  to="/contact"
+                  onClick={() => setOpen(false)}
+                  className="mt-2 inline-flex items-center justify-center gap-2 rounded-full bg-gradient-brand px-5 py-3 text-sm font-medium text-primary-foreground"
+                >
+                  Start a project <ArrowUpRight className="h-4 w-4" />
+                </Link>
+              </div>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
+    </header>
+  );
+}
