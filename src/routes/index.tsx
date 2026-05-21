@@ -115,61 +115,9 @@ function Hero() {
           </Reveal>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.9, ease: [0.22, 1, 0.36, 1] }}
-          className="relative flex justify-center"
-        >
-          <div className="absolute inset-0 bg-gradient-glow blur-3xl" />
-          {/* Orbit ring */}
-          <motion.div
-            className="absolute inset-0 m-auto h-[420px] w-[420px] rounded-full border border-primary/20"
-            animate={{ rotate: 360 }}
-            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
-          >
-            <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-primary shadow-glow" />
-            <span className="absolute top-1/2 -right-1.5 h-2 w-2 -translate-y-1/2 rounded-full bg-accent" />
-          </motion.div>
-          <motion.div
-            className="absolute inset-0 m-auto h-[520px] w-[520px] rounded-full border border-white/5"
-            animate={{ rotate: -360 }}
-            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-          >
-            <span className="absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rounded-full bg-primary/70" />
-          </motion.div>
-
-          <motion.img
-            src={ethan}
-            alt="Ethan — Ethixweb mascot"
-            className="relative z-10 max-h-[520px] w-auto drop-shadow-[0_30px_60px_rgba(220,38,38,0.45)]"
-            animate={{ y: [0, -18, 0], rotate: [-1.5, 1.5, -1.5] }}
-            transition={{
-              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
-              rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
-            }}
-            whileHover={{ scale: 1.04, rotate: 0 }}
-          />
-
-          <FloatingBadge className="top-6 -left-2 sm:left-0" icon={PhoneCall} text="More booked jobs" />
-          <FloatingBadge className="bottom-10 -right-2 sm:right-0" icon={BarChart3} text="Tracked to revenue" />
-          <FloatingBadge className="top-1/2 -right-4" icon={ShieldCheck} text="Senior team" />
-        </motion.div>
+        <EthanScene />
       </div>
     </section>
-  );
-}
-
-function FloatingBadge({ className, icon: Icon, text }: { className?: string; icon: any; text: string }) {
-  return (
-    <motion.div
-      className={`absolute z-20 glass-strong rounded-2xl px-4 py-2.5 flex items-center gap-2 text-sm shadow-elegant ${className}`}
-      animate={{ y: [0, -8, 0] }}
-      transition={{ duration: 4, repeat: Infinity, ease: "easeInOut", delay: Math.random() }}
-    >
-      <Icon className="h-4 w-4 text-primary" />
-      <span className="font-medium">{text}</span>
-    </motion.div>
   );
 }
 
