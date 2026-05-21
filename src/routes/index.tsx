@@ -1,14 +1,13 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { motion } from "framer-motion";
 import {
-  ArrowUpRight, Code2, Megaphone, Search, PhoneCall, BarChart3,
+  ArrowUpRight, Code2, Megaphone, Search, PhoneCall,
   Star, MapPin, ShieldCheck, Rocket, Wrench, Flame, Zap as Bolt,
   Palette, MousePointerClick, Anchor,
 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { Pricing } from "@/components/Pricing";
-import ethan from "@/assets/ethan.png";
 import { EthanScene } from "@/components/EthanScene";
 
 export const Route = createFileRoute("/")({
