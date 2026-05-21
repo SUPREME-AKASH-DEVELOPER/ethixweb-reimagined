@@ -19,8 +19,8 @@ function Contact() {
   const [sent, setSent] = useState(false);
   return (
     <SiteLayout>
-      <PageHero eyebrow="Contact" title="Let's build something legendary.">
-        Tell us where you want to go. We'll reply within one business day.
+      <PageHero eyebrow="Contact" title="Let's get you more booked jobs.">
+        Tell us about your business. We'll reply within one business day with a clear, no-jargon plan.
       </PageHero>
       <section className="px-6 py-20">
         <div className="mx-auto max-w-6xl grid lg:grid-cols-[1fr_1.4fr] gap-8">
@@ -30,8 +30,8 @@ function Contact() {
               <div className="mt-8 space-y-5">
                 {[
                   { i: Mail, l: "Email", v: "hello@ethixweb.com" },
-                  { i: Phone, l: "Phone", v: "+1 (555) 010-2026" },
-                  { i: MapPin, l: "HQ", v: "Remote-first · Global" },
+                  { i: Phone, l: "Phone", v: "+91 96250 06088" },
+                  { i: MapPin, l: "Based", v: "India · serving the US & North America" },
                 ].map(({ i: I, l, v }) => (
                   <div key={l} className="flex items-start gap-4">
                     <div className="p-2.5 rounded-xl bg-primary/15 text-primary"><I className="h-5 w-5" /></div>

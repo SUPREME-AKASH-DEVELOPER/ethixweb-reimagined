@@ -11,7 +11,10 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Ethixweb is a premium digital agency engineering modern websites, AI automation, and growth systems for ambitious brands.
+              Ethixweb is a digital marketing &amp; web development agency helping US home service businesses — plumbing, HVAC and electrical — grow with real, revenue-focused marketing.
+            </p>
+            <p className="mt-4 text-xs text-muted-foreground">
+              hello@ethixweb.com · +91 96250 06088
             </p>
             <div className="mt-6 flex gap-2">
               {[Twitter, Linkedin, Github, Instagram].map((Icon, i) => (

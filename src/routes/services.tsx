@@ -2,34 +2,34 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { SiteLayout } from "@/components/SiteLayout";
 import { PageHero } from "@/components/PageHero";
 import { Reveal } from "@/components/Reveal";
-import { Code2, Bot, Megaphone, Search, Palette, Zap, ShoppingCart, Smartphone, ArrowUpRight } from "lucide-react";
+import { Code2, Megaphone, Search, Palette, BarChart3, PhoneCall, ShoppingCart, Share2, ArrowUpRight } from "lucide-react";
 
 export const Route = createFileRoute("/services")({
   head: () => ({ meta: [
     { title: "Services — Ethixweb" },
-    { name: "description", content: "Web development, AI automation, branding, marketing and SEO — engineered for ambitious brands." },
+    { name: "description", content: "Websites, Google Ads, Local Services Ads, SEO, conversion tracking and lead gen for US home service businesses." },
     { property: "og:title", content: "Ethixweb Services" },
-    { property: "og:description", content: "Full-stack agency services for the modern internet." },
+    { property: "og:description", content: "Marketing services for plumbing, HVAC and electrical contractors." },
   ]}),
   component: Services,
 });
 
 const items = [
-  { icon: Code2, t: "Web Development", d: "Marketing sites, SaaS apps, e-commerce — built fast & built right.", to: "/web-development" },
-  { icon: Bot, t: "AI & Automation", d: "Custom agents, internal tools and end-to-end workflow automation.", to: "/ai-automation" },
-  { icon: Megaphone, t: "Performance Marketing", d: "Paid social, paid search and lifecycle that compound monthly.", to: "/marketing" },
-  { icon: Search, t: "SEO", d: "Technical foundations, content engines and authority building.", to: "/services" },
-  { icon: Palette, t: "Branding & Identity", d: "Logos, design systems and visual languages that feel iconic.", to: "/services" },
-  { icon: Zap, t: "Product Design", d: "User flows, prototyping and interfaces users actually love.", to: "/services" },
-  { icon: ShoppingCart, t: "E-commerce", d: "Shopify, custom storefronts and conversion-focused stores.", to: "/services" },
-  { icon: Smartphone, t: "Mobile Apps", d: "Native-feeling cross-platform apps with React Native.", to: "/services" },
+  { icon: Code2, t: "Website Design & Dev", d: "WordPress, Astro and headless builds — fast, mobile-first, built to convert.", to: "/web-development" },
+  { icon: Megaphone, t: "Google Ads", d: "Search campaigns managed by senior media buyers, optimized weekly for booked jobs.", to: "/marketing" },
+  { icon: PhoneCall, t: "Local Services Ads", d: "Google LSA setup, verification and optimization for top-of-page placement.", to: "/marketing" },
+  { icon: Search, t: "SEO & Local SEO", d: "Technical SEO, content engines, GBP optimization and local authority building.", to: "/services" },
+  { icon: BarChart3, t: "Conversion Tracking", d: "GA4, GTM and CallRail setup so every lead is attributed to its real source.", to: "/services" },
+  { icon: Share2, t: "Social & Content", d: "Social media management and content that builds trust in your local market.", to: "/marketing" },
+  { icon: Palette, t: "Brand & Creative", d: "Identity, ad creative and photography direction that looks trustworthy and premium.", to: "/services" },
+  { icon: ShoppingCart, t: "CRM & Lead Systems", d: "CRM integrations, lifecycle flows and lead-routing that turn calls into customers.", to: "/ai-automation" },
 ];
 
 function Services() {
   return (
     <SiteLayout>
-      <PageHero eyebrow="Services" title="Everything your brand needs to win.">
-        From first sketch to launch — and every growth lever after.
+      <PageHero eyebrow="Services" title="Everything a home service business needs to grow.">
+        Websites, ads, SEO and tracking — handled by a senior team that actually answers the phone.
       </PageHero>
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl grid md:grid-cols-2 lg:grid-cols-4 gap-5">

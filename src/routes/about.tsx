@@ -8,9 +8,9 @@ import ethan from "@/assets/ethan.png";
 export const Route = createFileRoute("/about")({
   head: () => ({ meta: [
     { title: "About — Ethixweb" },
-    { name: "description", content: "Meet Ethixweb — a futuristic digital agency obsessed with craft, speed and growth." },
+    { name: "description", content: "Ethixweb is a small, senior team helping US home service contractors grow with marketing that moves revenue." },
     { property: "og:title", content: "About Ethixweb" },
-    { property: "og:description", content: "Our story, values and the team behind the brand." },
+    { property: "og:description", content: "Our story, how we work and why home service contractors trust us." },
   ]}),
   component: About,
 });
@@ -18,24 +18,25 @@ export const Route = createFileRoute("/about")({
 function About() {
   return (
     <SiteLayout>
-      <PageHero eyebrow="About us" title="Built by craftsmen. Powered by AI.">
-        We're a small, senior team designing & engineering the next era of digital brands.
+      <PageHero eyebrow="About us" title="A small, senior team. No account managers.">
+        Ethixweb is a digital marketing &amp; web development agency built for businesses that want measurable growth — not marketing noise.
       </PageHero>
 
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl grid lg:grid-cols-2 gap-16 items-center">
           <Reveal>
-            <img src={ethan} alt="Ethan" className="mx-auto max-h-[500px] drop-shadow-[0_30px_60px_rgba(220,38,38,0.35)]" />
+            <img src={ethan} alt="Ethixweb" className="mx-auto max-h-[500px] drop-shadow-[0_30px_60px_rgba(220,38,38,0.35)]" />
           </Reveal>
           <Reveal delay={0.1}>
             <p className="text-sm uppercase tracking-widest text-primary">Our story</p>
-            <h2 className="mt-4 font-display text-4xl font-bold text-gradient">Born from the gap between design & growth.</h2>
+            <h2 className="mt-4 font-display text-4xl font-bold text-gradient">Built for contractors tired of big-agency theater.</h2>
             <p className="mt-6 text-muted-foreground leading-relaxed">
-              Most agencies stop at "pretty." We don't. Ethixweb was founded to merge bold design with measurable
-              business outcomes — combining engineering, AI and marketing under one roof.
+              Founded in 2023 by Amardeep, Ethixweb specializes in helping US home service businesses — plumbing, HVAC and electrical
+              contractors — generate qualified leads, book more jobs and build long-term authority in their local markets.
             </p>
             <p className="mt-4 text-muted-foreground leading-relaxed">
-              Today we partner with founders, operators and visionaries who want to look — and perform — like the future.
+              Beyond home services, we also partner with select brands on custom web builds, headless migrations, conversion tracking
+              setups and full-stack marketing support across industries. Based in India, with a US presence, serving clients across North America.
             </p>
           </Reveal>
         </div>
@@ -44,9 +45,9 @@ function About() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl grid md:grid-cols-3 gap-5">
           {[
-            { icon: Target, t: "Outcome-obsessed", d: "We measure success in conversions, retention and revenue — not awards." },
-            { icon: Heart, t: "Craft first", d: "Every pixel, animation and line of code is intentional. No shortcuts." },
-            { icon: Zap, t: "Move fast", d: "Senior team, lean process. We ship in weeks, not months." },
+            { icon: Target, t: "Revenue-obsessed", d: "We measure success in booked jobs and revenue — not impressions, clicks or awards." },
+            { icon: Heart, t: "Senior team only", d: "You talk directly to the people doing the work. No layers, no handoffs, no jargon." },
+            { icon: Zap, t: "Move fast, ship clean", d: "Lean process, weekly iteration. We launch in weeks and optimize forever." },
           ].map((v, i) => (
             <Reveal key={v.t} delay={i * 0.08}>
               <div className="glass rounded-3xl p-8 h-full">
@@ -62,6 +63,7 @@ function About() {
       <section className="px-6 py-20">
         <div className="mx-auto max-w-7xl glass-strong rounded-[2rem] p-12 text-center">
           <h2 className="font-display text-4xl font-bold text-gradient">Want to work with us?</h2>
+          <p className="mt-4 text-muted-foreground max-w-lg mx-auto">If you're a contractor tired of being one of 200 accounts at a big agency, let's talk.</p>
           <Link to="/contact" className="mt-8 inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 font-medium shadow-glow">
             Get in touch <ArrowUpRight className="h-4 w-4" />
           </Link>
