@@ -1,6 +1,7 @@
 import { ReactNode } from "react";
 import { Navbar } from "./Navbar";
 import { Footer } from "./Footer";
+import { EthanMascot } from "./EthanMascot";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -8,6 +9,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <Navbar />
       <main className="pt-24">{children}</main>
       <Footer />
+      <EthanMascot />
     </div>
   );
 }
