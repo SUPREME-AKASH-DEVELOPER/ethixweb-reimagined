@@ -3,30 +3,32 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight, Code2, Megaphone, Search, PhoneCall, BarChart3,
   Star, MapPin, ShieldCheck, Rocket, Wrench, Flame, Zap as Bolt,
+  Palette, MousePointerClick, Anchor,
 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { Pricing } from "@/components/Pricing";
 import ethan from "@/assets/ethan.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ethixweb — Marketing & Web for Plumbing, HVAC & Electrical Pros" },
-      { name: "description", content: "We help US home service contractors grow with high-converting websites, Google Ads, Local Services Ads, SEO and real conversion tracking. No account managers. Just the work." },
-      { property: "og:title", content: "Ethixweb — Marketing that moves revenue for home service businesses" },
-      { property: "og:description", content: "High-converting websites, Google Ads, LSAs and SEO for plumbing, HVAC and electrical contractors." },
+      { title: "Ethixweb — The Tech Department for Your Business" },
+      { name: "description", content: "We manage your entire digital operation — from AI booking agents and CRM integrations to websites, SEO and ads. The IT partner that keeps your trucks moving and your boats booking." },
+      { property: "og:title", content: "Ethixweb — The Tech Department for Your Business" },
+      { property: "og:description", content: "Websites, SEO, PPC, LSAs, AI booking and CRM management for home service businesses." },
     ],
   }),
   component: Home,
 });
 
 const services = [
-  { icon: Code2, title: "High-Converting Websites", desc: "WordPress, Astro and headless builds engineered to turn visitors into booked jobs.", to: "/web-development" },
-  { icon: Megaphone, title: "Google Ads & LSAs", desc: "Local Services Ads and Google Ads managed by senior media buyers — not interns.", to: "/marketing" },
-  { icon: Search, title: "Local SEO", desc: "Rank in the map pack and own your service area with technical + content SEO.", to: "/services" },
-  { icon: BarChart3, title: "Conversion Tracking", desc: "GA4, GTM and CallRail setup so you know exactly which channel drives revenue.", to: "/services" },
-  { icon: PhoneCall, title: "Lead Generation Systems", desc: "Call tracking, CRM integrations and lifecycle flows that compound monthly.", to: "/ai-automation" },
-  { icon: Rocket, title: "Brand & Creative", desc: "Identity, photography direction and ad creative that looks trustworthy and premium.", to: "/services" },
+  { icon: Code2, title: "Custom Website Design", desc: "Fully customized websites tailored to your brand, goals and customers.", to: "/web-development" },
+  { icon: Search, title: "Search Engine Optimization", desc: "Boost online visibility and attract more customers with result-driven SEO.", to: "/services" },
+  { icon: Megaphone, title: "Social Media Marketing", desc: "Engage your audience and grow your brand with impactful social campaigns.", to: "/marketing" },
+  { icon: Palette, title: "Graphic Design & Branding", desc: "Transform your brand identity with creative and impactful design.", to: "/services" },
+  { icon: PhoneCall, title: "Local Services Ads (LSA)", desc: "Get connected with local customers searching for trusted pros nearby.", to: "/marketing" },
+  { icon: MousePointerClick, title: "Pay-Per-Click (PPC)", desc: "Drive targeted traffic and boost sales with cost-effective PPC.", to: "/marketing" },
 ];
 
 const stats = [
@@ -37,12 +39,12 @@ const stats = [
 ];
 
 const industries = [
-  { icon: Wrench, name: "Plumbing" },
-  { icon: Flame, name: "HVAC" },
-  { icon: Bolt, name: "Electrical" },
-  { icon: ShieldCheck, name: "Roofing" },
-  { icon: MapPin, name: "Local Services" },
-  { icon: Rocket, name: "Select DTC Brands" },
+  { icon: Wrench, name: "Plumbing", to: "/industries" },
+  { icon: Flame, name: "HVAC", to: "/industries" },
+  { icon: Bolt, name: "Electrical", to: "/industries" },
+  { icon: Anchor, name: "Fishing & Charters", to: "/industries" },
+  { icon: ShieldCheck, name: "Home Services", to: "/industries" },
+  { icon: MapPin, name: "Local Businesses", to: "/industries" },
 ];
 
 const channels = ["WordPress", "Astro", "Headless", "Google Ads", "LSAs", "SEO", "GA4", "GTM", "CallRail", "Meta Ads", "HubSpot", "Zapier"];
