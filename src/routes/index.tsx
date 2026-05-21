@@ -57,6 +57,7 @@ function Home() {
       <Stats />
       <Services />
       <HowWeWork />
+      <Pricing />
       <TechStack />
       <Industries />
       <Testimonials />
@@ -80,28 +81,28 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
               </span>
-              Now booking US home service contractors
+              The Tech Department for Your Business
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-gradient">
-              Marketing that<br />actually moves <span className="text-gradient-brand">revenue.</span>
+              We run the tech.<br />You run the <span className="text-gradient-brand">business.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              We're a small, senior team helping US plumbing, HVAC and electrical contractors grow with
-              high-converting websites, Google Ads, Local Services Ads and SEO — backed by real conversion tracking.
+              We manage your entire digital operation — from AI booking agents and CRM integrations to websites,
+              SEO and ads. The IT partner that keeps your trucks moving and your boats booking.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 font-medium shadow-glow hover:scale-[1.03] transition-transform">
-                Book a strategy call <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+                Get Started Now <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium hover:bg-white/10 transition">
-                See what we do
-              </Link>
+              <a href="tel:+18889021768" className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium hover:bg-white/10 transition">
+                <PhoneCall className="h-4 w-4" /> (888) 902-1768
+              </a>
             </div>
           </Reveal>
           <Reveal delay={0.4}>
@@ -109,7 +110,7 @@ function Hero() {
               <div className="flex gap-0.5 text-primary">
                 {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-current" />)}
               </div>
-              <p className="text-xs max-w-xs">No account managers. No jargon. No vanity metrics. Just the work.</p>
+              <p className="text-xs max-w-xs">Trusted by HVAC, plumbing, electrical & fishing-charter operators across the US.</p>
             </div>
           </Reveal>
         </div>
