@@ -14,8 +14,19 @@ export function Footer() {
               Revamp your online presence with bespoke designs crafted for your business success.
             </p>
             <div className="mt-6 flex gap-2">
-              {[Facebook, Linkedin, Instagram].map((Icon, i) => (
-                <a key={i} href="#" aria-label="Social link" className="p-2 rounded-lg glass hover:bg-white/10 transition">
+              {[
+                { Icon: Facebook, href: "#", label: "Facebook" },
+                { Icon: Linkedin, href: "https://www.linkedin.com/company/ethixweb/", label: "LinkedIn" },
+                { Icon: Instagram, href: "#", label: "Instagram" },
+              ].map(({ Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target={href.startsWith("http") ? "_blank" : undefined}
+                  rel={href.startsWith("http") ? "noopener noreferrer" : undefined}
+                  aria-label={label}
+                  className="p-2 rounded-lg glass hover:bg-white/10 transition"
+                >
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
