@@ -3,30 +3,32 @@ import { motion } from "framer-motion";
 import {
   ArrowUpRight, Code2, Megaphone, Search, PhoneCall, BarChart3,
   Star, MapPin, ShieldCheck, Rocket, Wrench, Flame, Zap as Bolt,
+  Palette, MousePointerClick, Anchor,
 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
+import { Pricing } from "@/components/Pricing";
 import ethan from "@/assets/ethan.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
     meta: [
-      { title: "Ethixweb — Marketing & Web for Plumbing, HVAC & Electrical Pros" },
-      { name: "description", content: "We help US home service contractors grow with high-converting websites, Google Ads, Local Services Ads, SEO and real conversion tracking. No account managers. Just the work." },
-      { property: "og:title", content: "Ethixweb — Marketing that moves revenue for home service businesses" },
-      { property: "og:description", content: "High-converting websites, Google Ads, LSAs and SEO for plumbing, HVAC and electrical contractors." },
+      { title: "Ethixweb — The Tech Department for Your Business" },
+      { name: "description", content: "We manage your entire digital operation — from AI booking agents and CRM integrations to websites, SEO and ads. The IT partner that keeps your trucks moving and your boats booking." },
+      { property: "og:title", content: "Ethixweb — The Tech Department for Your Business" },
+      { property: "og:description", content: "Websites, SEO, PPC, LSAs, AI booking and CRM management for home service businesses." },
     ],
   }),
   component: Home,
 });
 
 const services = [
-  { icon: Code2, title: "High-Converting Websites", desc: "WordPress, Astro and headless builds engineered to turn visitors into booked jobs.", to: "/web-development" },
-  { icon: Megaphone, title: "Google Ads & LSAs", desc: "Local Services Ads and Google Ads managed by senior media buyers — not interns.", to: "/marketing" },
-  { icon: Search, title: "Local SEO", desc: "Rank in the map pack and own your service area with technical + content SEO.", to: "/services" },
-  { icon: BarChart3, title: "Conversion Tracking", desc: "GA4, GTM and CallRail setup so you know exactly which channel drives revenue.", to: "/services" },
-  { icon: PhoneCall, title: "Lead Generation Systems", desc: "Call tracking, CRM integrations and lifecycle flows that compound monthly.", to: "/ai-automation" },
-  { icon: Rocket, title: "Brand & Creative", desc: "Identity, photography direction and ad creative that looks trustworthy and premium.", to: "/services" },
+  { icon: Code2, title: "Custom Website Design", desc: "Fully customized websites tailored to your brand, goals and customers.", to: "/web-development" },
+  { icon: Search, title: "Search Engine Optimization", desc: "Boost online visibility and attract more customers with result-driven SEO.", to: "/services" },
+  { icon: Megaphone, title: "Social Media Marketing", desc: "Engage your audience and grow your brand with impactful social campaigns.", to: "/marketing" },
+  { icon: Palette, title: "Graphic Design & Branding", desc: "Transform your brand identity with creative and impactful design.", to: "/services" },
+  { icon: PhoneCall, title: "Local Services Ads (LSA)", desc: "Get connected with local customers searching for trusted pros nearby.", to: "/marketing" },
+  { icon: MousePointerClick, title: "Pay-Per-Click (PPC)", desc: "Drive targeted traffic and boost sales with cost-effective PPC.", to: "/marketing" },
 ];
 
 const stats = [
@@ -37,12 +39,12 @@ const stats = [
 ];
 
 const industries = [
-  { icon: Wrench, name: "Plumbing" },
-  { icon: Flame, name: "HVAC" },
-  { icon: Bolt, name: "Electrical" },
-  { icon: ShieldCheck, name: "Roofing" },
-  { icon: MapPin, name: "Local Services" },
-  { icon: Rocket, name: "Select DTC Brands" },
+  { icon: Wrench, name: "Plumbing", to: "/industries" },
+  { icon: Flame, name: "HVAC", to: "/industries" },
+  { icon: Bolt, name: "Electrical", to: "/industries" },
+  { icon: Anchor, name: "Fishing & Charters", to: "/industries" },
+  { icon: ShieldCheck, name: "Home Services", to: "/industries" },
+  { icon: MapPin, name: "Local Businesses", to: "/industries" },
 ];
 
 const channels = ["WordPress", "Astro", "Headless", "Google Ads", "LSAs", "SEO", "GA4", "GTM", "CallRail", "Meta Ads", "HubSpot", "Zapier"];
@@ -55,6 +57,7 @@ function Home() {
       <Stats />
       <Services />
       <HowWeWork />
+      <Pricing />
       <TechStack />
       <Industries />
       <Testimonials />
@@ -78,28 +81,28 @@ function Hero() {
                 <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-primary opacity-75" />
                 <span className="relative inline-flex h-1.5 w-1.5 rounded-full bg-primary" />
               </span>
-              Now booking US home service contractors
+              The Tech Department for Your Business
             </div>
           </Reveal>
           <Reveal delay={0.1}>
             <h1 className="mt-6 font-display text-5xl sm:text-6xl lg:text-7xl font-bold leading-[1.02] text-gradient">
-              Marketing that<br />actually moves <span className="text-gradient-brand">revenue.</span>
+              We run the tech.<br />You run the <span className="text-gradient-brand">business.</span>
             </h1>
           </Reveal>
           <Reveal delay={0.2}>
             <p className="mt-6 max-w-xl text-lg text-muted-foreground leading-relaxed">
-              We're a small, senior team helping US plumbing, HVAC and electrical contractors grow with
-              high-converting websites, Google Ads, Local Services Ads and SEO — backed by real conversion tracking.
+              We manage your entire digital operation — from AI booking agents and CRM integrations to websites,
+              SEO and ads. The IT partner that keeps your trucks moving and your boats booking.
             </p>
           </Reveal>
           <Reveal delay={0.3}>
             <div className="mt-10 flex flex-wrap gap-4">
               <Link to="/contact" className="group inline-flex items-center gap-2 rounded-full bg-gradient-brand px-7 py-3.5 font-medium shadow-glow hover:scale-[1.03] transition-transform">
-                Book a strategy call <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+                Get Started Now <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
               </Link>
-              <Link to="/services" className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium hover:bg-white/10 transition">
-                See what we do
-              </Link>
+              <a href="tel:+18889021768" className="inline-flex items-center gap-2 rounded-full glass px-7 py-3.5 font-medium hover:bg-white/10 transition">
+                <PhoneCall className="h-4 w-4" /> (888) 902-1768
+              </a>
             </div>
           </Reveal>
           <Reveal delay={0.4}>
@@ -107,7 +110,7 @@ function Hero() {
               <div className="flex gap-0.5 text-primary">
                 {[1,2,3,4,5].map(i => <Star key={i} className="h-4 w-4 fill-current" />)}
               </div>
-              <p className="text-xs max-w-xs">No account managers. No jargon. No vanity metrics. Just the work.</p>
+              <p className="text-xs max-w-xs">Trusted by HVAC, plumbing, electrical & fishing-charter operators across the US.</p>
             </div>
           </Reveal>
         </div>
@@ -306,13 +309,13 @@ function Industries() {
         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
           {industries.map((ind, i) => (
             <Reveal key={ind.name} delay={i * 0.04}>
-              <div className="group glass rounded-2xl p-6 flex items-center justify-between hover:bg-white/[0.06] transition">
+              <Link to={ind.to} className="group glass rounded-2xl p-6 flex items-center justify-between hover:bg-white/[0.06] transition">
                 <div className="flex items-center gap-3">
                   <ind.icon className="h-5 w-5 text-primary" />
                   <span className="font-display text-lg">{ind.name}</span>
                 </div>
                 <ArrowUpRight className="h-5 w-5 text-muted-foreground group-hover:text-primary group-hover:rotate-45 transition" />
-              </div>
+              </Link>
             </Reveal>
           ))}
         </div>
@@ -323,9 +326,9 @@ function Industries() {
 
 function Testimonials() {
   const items = [
-    { q: "Our booked jobs nearly doubled within a few months. The tracking finally tells us which channel pays for itself.", a: "HVAC operator", r: "Texas" },
-    { q: "Switched from a big agency. Same spend, way more leads — and we actually talk to the people running our ads.", a: "Plumbing owner", r: "Florida" },
-    { q: "New site loads fast, ranks in our service area and converts. Exactly what was promised.", a: "Electrical contractor", r: "Arizona" },
+    { q: "Ethixweb understood our requirements immediately and turned them into a professional, user-friendly website. The attention to detail was impressive.", a: "Emily Turner", r: "Client" },
+    { q: "Sharp, modern looking and has all the bells and whistles we need. Easy to work with, great communication, done efficiently. I'd highly recommend them!", a: "Kayla Kjl", r: "Client" },
+    { q: "Ethixweb delivered a clean, modern website that represents our brand perfectly. Professional, responsive, and completed on schedule.", a: "James Walker", r: "Client" },
   ];
   return (
     <section className="py-24 px-6">

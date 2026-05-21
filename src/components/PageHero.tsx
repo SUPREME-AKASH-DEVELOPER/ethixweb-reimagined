@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import { Reveal } from "./Reveal";
 
-export function PageHero({ eyebrow, title, children }: { eyebrow: string; title: string; children?: ReactNode }) {
+export function PageHero({ eyebrow, title, children }: { eyebrow: ReactNode; title: string; children?: ReactNode }) {
   return (
     <section className="relative -mt-24 pt-40 pb-20 bg-gradient-hero overflow-hidden">
       <div className="absolute inset-0 grid-bg opacity-50" />

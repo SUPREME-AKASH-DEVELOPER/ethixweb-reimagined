@@ -1,6 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Logo } from "./Logo";
-import { Github, Linkedin, Twitter, Instagram, ArrowUpRight } from "lucide-react";
+import { Linkedin, Instagram, Facebook, ArrowUpRight, Phone, Mail, Clock } from "lucide-react";
 
 export function Footer() {
   return (
@@ -11,27 +11,42 @@ export function Footer() {
           <div>
             <Logo />
             <p className="mt-6 max-w-sm text-sm text-muted-foreground leading-relaxed">
-              Ethixweb is a digital marketing &amp; web development agency helping US home service businesses — plumbing, HVAC and electrical — grow with real, revenue-focused marketing.
-            </p>
-            <p className="mt-4 text-xs text-muted-foreground">
-              hello@ethixweb.com · +91 96250 06088
+              Revamp your online presence with bespoke designs crafted for your business success.
             </p>
             <div className="mt-6 flex gap-2">
-              {[Twitter, Linkedin, Github, Instagram].map((Icon, i) => (
-                <a key={i} href="#" className="p-2 rounded-lg glass hover:bg-white/10 transition">
+              {[Facebook, Linkedin, Instagram].map((Icon, i) => (
+                <a key={i} href="#" aria-label="Social link" className="p-2 rounded-lg glass hover:bg-white/10 transition">
                   <Icon className="h-4 w-4" />
                 </a>
               ))}
             </div>
           </div>
-          <FooterCol title="Company" links={[["About","/about"],["Careers","/careers"],["Blog","/blog"],["Contact","/contact"]]} />
-          <FooterCol title="Services" links={[["Web Development","/web-development"],["AI & Automation","/ai-automation"],["Marketing","/marketing"],["All services","/services"]]} />
-          <FooterCol title="Work" links={[["Portfolio","/portfolio"],["Case studies","/portfolio"]]} />
+
+          <div>
+            <h4 className="text-xs uppercase tracking-widest text-muted-foreground mb-4">Contact</h4>
+            <ul className="space-y-3 text-sm">
+              <li className="flex items-start gap-2.5">
+                <Phone className="h-4 w-4 text-primary mt-0.5" />
+                <a href="tel:+18889021768" className="text-foreground/85 hover:text-primary">(888) 902-1768</a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Mail className="h-4 w-4 text-primary mt-0.5" />
+                <a href="mailto:info@ethixweb.com" className="text-foreground/85 hover:text-primary">info@ethixweb.com</a>
+              </li>
+              <li className="flex items-start gap-2.5">
+                <Clock className="h-4 w-4 text-primary mt-0.5" />
+                <span className="text-foreground/85">Mon–Fri · 9:00 AM – 5:00 PM</span>
+              </li>
+            </ul>
+          </div>
+
+          <FooterCol title="Company" links={[["About","/about"],["Industries","/industries"],["Our Work","/portfolio"],["Blog","/blog"],["Contact","/contact"]]} />
+          <FooterCol title="Useful Links" links={[["Cancellation & Refunds","/policies/refunds"],["Shipping Policy","/policies/shipping"],["Terms & Conditions","/policies/terms"],["Privacy Policy","/policies/privacy"]]} />
         </div>
         <div className="mt-16 flex flex-col gap-4 sm:flex-row items-center justify-between border-t border-white/5 pt-8">
           <p className="text-xs text-muted-foreground">© {new Date().getFullYear()} Ethixweb. All rights reserved.</p>
           <Link to="/contact" className="group inline-flex items-center gap-1 text-sm text-muted-foreground hover:text-foreground">
-            Let's build something <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
+            Book an appointment <ArrowUpRight className="h-4 w-4 transition-transform group-hover:rotate-45" />
           </Link>
         </div>
       </div>

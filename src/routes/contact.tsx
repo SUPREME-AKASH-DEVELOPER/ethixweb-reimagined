@@ -29,9 +29,9 @@ function Contact() {
               <h3 className="font-display text-2xl font-semibold">Reach out directly</h3>
               <div className="mt-8 space-y-5">
                 {[
-                  { i: Mail, l: "Email", v: "hello@ethixweb.com" },
-                  { i: Phone, l: "Phone", v: "+91 96250 06088" },
-                  { i: MapPin, l: "Based", v: "India · serving the US & North America" },
+                  { i: Mail, l: "Email Us", v: "info@ethixweb.com" },
+                  { i: Phone, l: "Phone", v: "(888) 902-1768" },
+                  { i: MapPin, l: "Hours", v: "Mon–Fri · 9:00 AM – 5:00 PM" },
                 ].map(({ i: I, l, v }) => (
                   <div key={l} className="flex items-start gap-4">
                     <div className="p-2.5 rounded-xl bg-primary/15 text-primary"><I className="h-5 w-5" /></div>

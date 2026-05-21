@@ -14,12 +14,14 @@ import { Route as SitemapDotxmlRouteImport } from './routes/sitemap[.]xml'
 import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as MarketingRouteImport } from './routes/marketing'
+import { Route as IndustriesRouteImport } from './routes/industries'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
 import { Route as AiAutomationRouteImport } from './routes/ai-automation'
 import { Route as AboutRouteImport } from './routes/about'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as LocationsKentWaRouteImport } from './routes/locations.kent-wa'
 
 const WebDevelopmentRoute = WebDevelopmentRouteImport.update({
   id: '/web-development',
@@ -44,6 +46,11 @@ const PortfolioRoute = PortfolioRouteImport.update({
 const MarketingRoute = MarketingRouteImport.update({
   id: '/marketing',
   path: '/marketing',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const IndustriesRoute = IndustriesRouteImport.update({
+  id: '/industries',
+  path: '/industries',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -76,6 +83,11 @@ const IndexRoute = IndexRouteImport.update({
   path: '/',
   getParentRoute: () => rootRouteImport,
 } as any)
+const LocationsKentWaRoute = LocationsKentWaRouteImport.update({
+  id: '/locations/kent-wa',
+  path: '/locations/kent-wa',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
@@ -84,11 +96,13 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/locations/kent-wa': typeof LocationsKentWaRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
@@ -97,11 +111,13 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/locations/kent-wa': typeof LocationsKentWaRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
@@ -111,11 +127,13 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
   '/services': typeof ServicesRoute
   '/sitemap.xml': typeof SitemapDotxmlRoute
   '/web-development': typeof WebDevelopmentRoute
+  '/locations/kent-wa': typeof LocationsKentWaRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
@@ -126,11 +144,13 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/industries'
     | '/marketing'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/web-development'
+    | '/locations/kent-wa'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
@@ -139,11 +159,13 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/industries'
     | '/marketing'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/web-development'
+    | '/locations/kent-wa'
   id:
     | '__root__'
     | '/'
@@ -152,11 +174,13 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/industries'
     | '/marketing'
     | '/portfolio'
     | '/services'
     | '/sitemap.xml'
     | '/web-development'
+    | '/locations/kent-wa'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -166,11 +190,13 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  IndustriesRoute: typeof IndustriesRoute
   MarketingRoute: typeof MarketingRoute
   PortfolioRoute: typeof PortfolioRoute
   ServicesRoute: typeof ServicesRoute
   SitemapDotxmlRoute: typeof SitemapDotxmlRoute
   WebDevelopmentRoute: typeof WebDevelopmentRoute
+  LocationsKentWaRoute: typeof LocationsKentWaRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -208,6 +234,13 @@ declare module '@tanstack/react-router' {
       path: '/marketing'
       fullPath: '/marketing'
       preLoaderRoute: typeof MarketingRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/industries': {
+      id: '/industries'
+      path: '/industries'
+      fullPath: '/industries'
+      preLoaderRoute: typeof IndustriesRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -252,6 +285,13 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof IndexRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/locations/kent-wa': {
+      id: '/locations/kent-wa'
+      path: '/locations/kent-wa'
+      fullPath: '/locations/kent-wa'
+      preLoaderRoute: typeof LocationsKentWaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
@@ -262,11 +302,13 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  IndustriesRoute: IndustriesRoute,
   MarketingRoute: MarketingRoute,
   PortfolioRoute: PortfolioRoute,
   ServicesRoute: ServicesRoute,
   SitemapDotxmlRoute: SitemapDotxmlRoute,
   WebDevelopmentRoute: WebDevelopmentRoute,
+  LocationsKentWaRoute: LocationsKentWaRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)

@@ -7,10 +7,11 @@ import { Logo } from "./Logo";
 const links = [
   { to: "/", label: "Home" },
   { to: "/about", label: "About" },
+  { to: "/industries", label: "Industries" },
   { to: "/services", label: "Services" },
-  { to: "/portfolio", label: "Work" },
+  { to: "/locations/kent-wa", label: "Locations" },
+  { to: "/portfolio", label: "Our Work" },
   { to: "/blog", label: "Blog" },
-  { to: "/careers", label: "Careers" },
 ];
 
 export function Navbar() {
