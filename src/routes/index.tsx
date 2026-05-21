@@ -26,7 +26,7 @@ const services = [
   { icon: Code2, title: "Custom Website Design", desc: "Fully customized websites tailored to your brand, goals and customers.", to: "/web-development" },
   { icon: Search, title: "Search Engine Optimization", desc: "Boost online visibility and attract more customers with result-driven SEO.", to: "/services" },
   { icon: Megaphone, title: "Social Media Marketing", desc: "Engage your audience and grow your brand with impactful social campaigns.", to: "/marketing" },
-  { icon: Palette, title: "Graphic Design & Branding", desc: "Transform your brand identity with creative and impactful design.", to: "/services" },
+  { icon: Palette, title: "Graphic Design & Branding", desc: "Transform your brand identity with creative and impactful design.", to: "/graphic-design" },
   { icon: PhoneCall, title: "Local Services Ads (LSA)", desc: "Get connected with local customers searching for trusted pros nearby.", to: "/marketing" },
   { icon: MousePointerClick, title: "Pay-Per-Click (PPC)", desc: "Drive targeted traffic and boost sales with cost-effective PPC.", to: "/marketing" },
 ];

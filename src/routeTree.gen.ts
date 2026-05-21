@@ -15,6 +15,7 @@ import { Route as ServicesRouteImport } from './routes/services'
 import { Route as PortfolioRouteImport } from './routes/portfolio'
 import { Route as MarketingRouteImport } from './routes/marketing'
 import { Route as IndustriesRouteImport } from './routes/industries'
+import { Route as GraphicDesignRouteImport } from './routes/graphic-design'
 import { Route as ContactRouteImport } from './routes/contact'
 import { Route as CareersRouteImport } from './routes/careers'
 import { Route as BlogRouteImport } from './routes/blog'
@@ -51,6 +52,11 @@ const MarketingRoute = MarketingRouteImport.update({
 const IndustriesRoute = IndustriesRouteImport.update({
   id: '/industries',
   path: '/industries',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const GraphicDesignRoute = GraphicDesignRouteImport.update({
+  id: '/graphic-design',
+  path: '/graphic-design',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContactRoute = ContactRouteImport.update({
@@ -96,6 +102,7 @@ export interface FileRoutesByFullPath {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/graphic-design': typeof GraphicDesignRoute
   '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
@@ -111,6 +118,7 @@ export interface FileRoutesByTo {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/graphic-design': typeof GraphicDesignRoute
   '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
@@ -127,6 +135,7 @@ export interface FileRoutesById {
   '/blog': typeof BlogRoute
   '/careers': typeof CareersRoute
   '/contact': typeof ContactRoute
+  '/graphic-design': typeof GraphicDesignRoute
   '/industries': typeof IndustriesRoute
   '/marketing': typeof MarketingRoute
   '/portfolio': typeof PortfolioRoute
@@ -144,6 +153,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/graphic-design'
     | '/industries'
     | '/marketing'
     | '/portfolio'
@@ -159,6 +169,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/graphic-design'
     | '/industries'
     | '/marketing'
     | '/portfolio'
@@ -174,6 +185,7 @@ export interface FileRouteTypes {
     | '/blog'
     | '/careers'
     | '/contact'
+    | '/graphic-design'
     | '/industries'
     | '/marketing'
     | '/portfolio'
@@ -190,6 +202,7 @@ export interface RootRouteChildren {
   BlogRoute: typeof BlogRoute
   CareersRoute: typeof CareersRoute
   ContactRoute: typeof ContactRoute
+  GraphicDesignRoute: typeof GraphicDesignRoute
   IndustriesRoute: typeof IndustriesRoute
   MarketingRoute: typeof MarketingRoute
   PortfolioRoute: typeof PortfolioRoute
@@ -241,6 +254,13 @@ declare module '@tanstack/react-router' {
       path: '/industries'
       fullPath: '/industries'
       preLoaderRoute: typeof IndustriesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/graphic-design': {
+      id: '/graphic-design'
+      path: '/graphic-design'
+      fullPath: '/graphic-design'
+      preLoaderRoute: typeof GraphicDesignRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contact': {
@@ -302,6 +322,7 @@ const rootRouteChildren: RootRouteChildren = {
   BlogRoute: BlogRoute,
   CareersRoute: CareersRoute,
   ContactRoute: ContactRoute,
+  GraphicDesignRoute: GraphicDesignRoute,
   IndustriesRoute: IndustriesRoute,
   MarketingRoute: MarketingRoute,
   PortfolioRoute: PortfolioRoute,
