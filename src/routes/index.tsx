@@ -6,7 +6,7 @@ import {
 } from "lucide-react";
 import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
-import logo from "@/assets/ethixweb-logo.jpg";
+import ethan from "@/assets/ethan.png";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -119,15 +119,35 @@ function Hero() {
           className="relative flex justify-center"
         >
           <div className="absolute inset-0 bg-gradient-glow blur-3xl" />
+          {/* Orbit ring */}
           <motion.div
-            className="relative z-10"
-            animate={{ y: [0, -14, 0] }}
-            transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+            className="absolute inset-0 m-auto h-[420px] w-[420px] rounded-full border border-primary/20"
+            animate={{ rotate: 360 }}
+            transition={{ duration: 30, repeat: Infinity, ease: "linear" }}
           >
-            <div className="relative rounded-[2rem] overflow-hidden ring-1 ring-white/10 shadow-glow w-[280px] h-[280px] sm:w-[360px] sm:h-[360px]">
-              <img src={logo} alt="Ethixweb" className="h-full w-full object-cover" />
-            </div>
+            <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-primary shadow-glow" />
+            <span className="absolute top-1/2 -right-1.5 h-2 w-2 -translate-y-1/2 rounded-full bg-accent" />
           </motion.div>
+          <motion.div
+            className="absolute inset-0 m-auto h-[520px] w-[520px] rounded-full border border-white/5"
+            animate={{ rotate: -360 }}
+            transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
+          >
+            <span className="absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rounded-full bg-primary/70" />
+          </motion.div>
+
+          <motion.img
+            src={ethan}
+            alt="Ethan — Ethixweb mascot"
+            className="relative z-10 max-h-[520px] w-auto drop-shadow-[0_30px_60px_rgba(220,38,38,0.45)]"
+            animate={{ y: [0, -18, 0], rotate: [-1.5, 1.5, -1.5] }}
+            transition={{
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut" },
+              rotate: { duration: 8, repeat: Infinity, ease: "easeInOut" },
+            }}
+            whileHover={{ scale: 1.04, rotate: 0 }}
+          />
+
           <FloatingBadge className="top-6 -left-2 sm:left-0" icon={PhoneCall} text="More booked jobs" />
           <FloatingBadge className="bottom-10 -right-2 sm:right-0" icon={BarChart3} text="Tracked to revenue" />
           <FloatingBadge className="top-1/2 -right-4" icon={ShieldCheck} text="Senior team" />
