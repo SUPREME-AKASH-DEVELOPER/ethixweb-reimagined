@@ -4,51 +4,41 @@ import { BarChart3, PhoneCall, Palette, MousePointerClick, Sparkles } from "luci
 import ethan from "@/assets/ethan.png";
 
 /**
- * Cinematic "3D-feel" Ethan hero scene.
- * - Layered parallax with cursor-driven tilt + eye tracking
- * - Idle breathing + floating
- * - Blink overlay (timed eyelid)
- * - Particle canvas backdrop
- * - Spring-physics floating UI cards
- * - Orbit rings + radial glow
- *
- * NOTE: Swap the <img> for a <Canvas> + GLTF model when a Ethan .glb asset
- * is provided. The surrounding scene rig (cards, particles, rings, lighting)
- * is engineered to drop in around a 3D model without changes.
+ * Cinematic free-floating Ethan hero scene.
+ * No card, no rectangular framing — character floats in space with
+ * dual rim lighting (red + blue), ambient glow, ground shadow,
+ * cursor-driven parallax, breathing + idle float, particle backdrop,
+ * and spring-physics floating glass pills.
  */
 export function EthanScene() {
   const wrapRef = useRef<HTMLDivElement>(null);
   const canvasRef = useRef<HTMLCanvasElement>(null);
 
-  // Cursor → motion values (normalized -1..1)
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
-  const sx = useSpring(mx, { stiffness: 90, damping: 18, mass: 0.6 });
-  const sy = useSpring(my, { stiffness: 90, damping: 18, mass: 0.6 });
+  const sx = useSpring(mx, { stiffness: 80, damping: 20, mass: 0.6 });
+  const sy = useSpring(my, { stiffness: 80, damping: 20, mass: 0.6 });
 
-  // Character tilt
-  const rotateY = useTransform(sx, [-1, 1], [-12, 12]);
+  const rotateY = useTransform(sx, [-1, 1], [-14, 14]);
   const rotateX = useTransform(sy, [-1, 1], [10, -10]);
-  const translateX = useTransform(sx, [-1, 1], [-18, 18]);
-  const translateY = useTransform(sy, [-1, 1], [-12, 12]);
+  const translateX = useTransform(sx, [-1, 1], [-22, 22]);
+  const translateY = useTransform(sy, [-1, 1], [-14, 14]);
 
-  // Eye tracking offsets
-  const eyeX = useTransform(sx, [-1, 1], [-5, 5]);
-  const eyeY = useTransform(sy, [-1, 1], [-3, 3]);
+  // Glow / rim lights track cursor subtly
+  const redX = useTransform(sx, [-1, 1], [-30, 30]);
+  const redY = useTransform(sy, [-1, 1], [-20, 20]);
+  const blueX = useTransform(sx, [-1, 1], [30, -30]);
+  const blueY = useTransform(sy, [-1, 1], [20, -20]);
 
-  // Glow follows cursor too
-  const glowX = useTransform(sx, [-1, 1], [-40, 40]);
-  const glowY = useTransform(sy, [-1, 1], [-30, 30]);
-
-  // Cards float independently with subtle parallax
-  const card1X = useTransform(sx, [-1, 1], [10, -10]);
-  const card1Y = useTransform(sy, [-1, 1], [6, -6]);
-  const card2X = useTransform(sx, [-1, 1], [-14, 14]);
-  const card2Y = useTransform(sy, [-1, 1], [-8, 8]);
-  const card3X = useTransform(sx, [-1, 1], [8, -8]);
-  const card3Y = useTransform(sy, [-1, 1], [-10, 10]);
-  const card4X = useTransform(sx, [-1, 1], [-10, 10]);
-  const card4Y = useTransform(sy, [-1, 1], [12, -12]);
+  // Floating cards parallax
+  const c1X = useTransform(sx, [-1, 1], [10, -10]);
+  const c1Y = useTransform(sy, [-1, 1], [6, -6]);
+  const c2X = useTransform(sx, [-1, 1], [-14, 14]);
+  const c2Y = useTransform(sy, [-1, 1], [-8, 8]);
+  const c3X = useTransform(sx, [-1, 1], [8, -8]);
+  const c3Y = useTransform(sy, [-1, 1], [-10, 10]);
+  const c4X = useTransform(sx, [-1, 1], [-10, 10]);
+  const c4Y = useTransform(sy, [-1, 1], [12, -12]);
 
   useEffect(() => {
     const el = wrapRef.current;
@@ -77,6 +67,7 @@ export function EthanScene() {
       const { clientWidth: w, clientHeight: h } = canvas;
       canvas.width = w * dpr;
       canvas.height = h * dpr;
+      ctx.setTransform(1, 0, 0, 1, 0, 0);
       ctx.scale(dpr, dpr);
     };
     resize();
@@ -84,15 +75,14 @@ export function EthanScene() {
     type P = { x: number; y: number; vx: number; vy: number; r: number; a: number; hue: number };
     const W = () => canvas.clientWidth;
     const H = () => canvas.clientHeight;
-    const COUNT = 42;
-    const particles: P[] = Array.from({ length: COUNT }, () => ({
+    const particles: P[] = Array.from({ length: 50 }, () => ({
       x: Math.random() * W(),
       y: Math.random() * H(),
       vx: (Math.random() - 0.5) * 0.25,
       vy: (Math.random() - 0.5) * 0.25,
-      r: Math.random() * 1.8 + 0.4,
+      r: Math.random() * 1.6 + 0.4,
       a: Math.random() * 0.5 + 0.2,
-      hue: Math.random() > 0.5 ? 0 : 350, // red / pink
+      hue: Math.random() > 0.55 ? 0 : 215,
     }));
 
     const draw = () => {
@@ -102,12 +92,12 @@ export function EthanScene() {
         p.y += p.vy;
         if (p.x < 0 || p.x > W()) p.vx *= -1;
         if (p.y < 0 || p.y > H()) p.vy *= -1;
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 8);
-        grad.addColorStop(0, `hsla(${p.hue}, 90%, 60%, ${p.a})`);
+        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 9);
+        grad.addColorStop(0, `hsla(${p.hue}, 90%, 62%, ${p.a})`);
         grad.addColorStop(1, "hsla(0,0%,0%,0)");
         ctx.fillStyle = grad;
         ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 8, 0, Math.PI * 2);
+        ctx.arc(p.x, p.y, p.r * 9, 0, Math.PI * 2);
         ctx.fill();
       }
       raf = requestAnimationFrame(draw);
@@ -124,53 +114,61 @@ export function EthanScene() {
   return (
     <motion.div
       ref={wrapRef}
-      initial={{ opacity: 0, scale: 0.85, y: 30 }}
+      initial={{ opacity: 0, scale: 0.9, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      className="relative flex justify-center items-center min-h-[560px] w-full"
-      style={{ perspective: 1200 }}
+      className="relative flex justify-center items-end min-h-[640px] w-full"
+      style={{ perspective: 1400 }}
     >
       {/* Particle canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full pointer-events-none"
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+
+      {/* Ambient red glow (right rim light) */}
+      <motion.div
+        className="absolute pointer-events-none rounded-full blur-[110px] opacity-80"
+        style={{
+          x: redX,
+          y: redY,
+          right: "8%",
+          top: "18%",
+          width: 380,
+          height: 380,
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.7), transparent 65%)",
+        }}
+        animate={{ opacity: [0.55, 0.9, 0.55] }}
+        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Radial backdrop glow that tracks cursor */}
+      {/* Ambient blue glow (left rim light) */}
       <motion.div
-        className="absolute inset-0 m-auto h-[460px] w-[460px] rounded-full blur-[100px] opacity-70 pointer-events-none"
+        className="absolute pointer-events-none rounded-full blur-[120px] opacity-70"
         style={{
-          x: glowX,
-          y: glowY,
-          background:
-            "radial-gradient(circle, hsl(var(--primary) / 0.55), transparent 70%)",
+          x: blueX,
+          y: blueY,
+          left: "6%",
+          top: "30%",
+          width: 360,
+          height: 360,
+          background: "radial-gradient(circle, hsla(220, 95%, 60%, 0.55), transparent 65%)",
+        }}
+        animate={{ opacity: [0.45, 0.75, 0.45] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+      />
+
+      {/* Soft central halo for depth separation */}
+      <div
+        className="absolute pointer-events-none rounded-full blur-[80px] opacity-40"
+        style={{
+          left: "50%",
+          top: "50%",
+          width: 420,
+          height: 420,
+          transform: "translate(-50%, -50%)",
+          background: "radial-gradient(circle, hsla(0,0%,100%,0.06), transparent 70%)",
         }}
       />
 
-      {/* Orbit rings */}
-      <motion.div
-        className="absolute inset-0 m-auto h-[440px] w-[440px] rounded-full border border-primary/25 pointer-events-none"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 28, repeat: Infinity, ease: "linear" }}
-      >
-        <span className="absolute -top-1.5 left-1/2 h-3 w-3 -translate-x-1/2 rounded-full bg-primary shadow-glow" />
-        <span className="absolute top-1/2 -right-1.5 h-2 w-2 -translate-y-1/2 rounded-full bg-accent" />
-      </motion.div>
-      <motion.div
-        className="absolute inset-0 m-auto h-[540px] w-[540px] rounded-full border border-white/5 pointer-events-none"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 50, repeat: Infinity, ease: "linear" }}
-      >
-        <span className="absolute top-1/2 -left-1 h-2 w-2 -translate-y-1/2 rounded-full bg-primary/70" />
-        <span className="absolute -bottom-1 left-1/3 h-2 w-2 rounded-full bg-primary/40" />
-      </motion.div>
-      <motion.div
-        className="absolute inset-0 m-auto h-[640px] w-[640px] rounded-full border border-white/[0.03] pointer-events-none"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-      />
-
-      {/* Character rig with cinematic tilt + breathing + float */}
+      {/* Free-floating character (no card, no border) */}
       <motion.div
         className="relative z-10"
         style={{
@@ -182,99 +180,72 @@ export function EthanScene() {
         }}
       >
         <motion.div
-          // breathing
           animate={{ scale: [1, 1.018, 1] }}
           transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.div
-            // idle floating
-            animate={{ y: [0, -14, 0] }}
+            animate={{ y: [0, -16, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-            className="relative"
+            className="relative will-change-transform"
           >
+            {/* Red rim — duplicate silhouette, blurred + red tint, offset right */}
+            <img
+              src={ethan}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 max-h-[640px] w-auto select-none pointer-events-none"
+              style={{
+                filter:
+                  "blur(14px) brightness(0) saturate(100%) invert(28%) sepia(96%) saturate(7000%) hue-rotate(350deg)",
+                transform: "translate(14px, 0) scale(1.02)",
+                opacity: 0.85,
+                mixBlendMode: "screen",
+              }}
+              draggable={false}
+            />
+            {/* Blue rim — duplicate silhouette, blurred + blue tint, offset left */}
+            <img
+              src={ethan}
+              alt=""
+              aria-hidden
+              className="absolute inset-0 max-h-[640px] w-auto select-none pointer-events-none"
+              style={{
+                filter:
+                  "blur(16px) brightness(0) saturate(100%) invert(40%) sepia(85%) saturate(2500%) hue-rotate(200deg)",
+                transform: "translate(-14px, 4px) scale(1.02)",
+                opacity: 0.7,
+                mixBlendMode: "screen",
+              }}
+              draggable={false}
+            />
+            {/* Main character */}
             <img
               src={ethan}
               alt="Ethan — Senior creative founder at Ethixweb"
-              className="relative max-h-[540px] w-auto drop-shadow-[0_40px_80px_rgba(220,38,38,0.5)] select-none pointer-events-none"
+              className="relative max-h-[640px] w-auto drop-shadow-[0_50px_60px_rgba(0,0,0,0.55)] select-none pointer-events-none"
               draggable={false}
             />
-
-            {/* Eye tracking overlay (subtle iris dots that drift with cursor).
-                Positions are approximate to ride over the rendered face. */}
-            <motion.div
-              className="absolute pointer-events-none"
-              style={{
-                x: eyeX,
-                y: eyeY,
-                top: "22%",
-                left: "50%",
-                translateX: "-50%",
-              }}
-            >
-              <div className="flex gap-[28px]">
-                <span className="block h-1.5 w-1.5 rounded-full bg-black/70 mix-blend-multiply" />
-                <span className="block h-1.5 w-1.5 rounded-full bg-black/70 mix-blend-multiply" />
-              </div>
-            </motion.div>
-
-            {/* Blink eyelid overlay */}
-            <motion.div
-              className="absolute pointer-events-none rounded-[40%] bg-[#1a0a0a]"
-              style={{
-                top: "21%",
-                left: "50%",
-                translateX: "-50%",
-                width: 68,
-                height: 6,
-                mixBlendMode: "multiply",
-              }}
-              animate={{ scaleY: [0, 0, 1, 0, 0] }}
-              transition={{
-                duration: 5.5,
-                repeat: Infinity,
-                times: [0, 0.92, 0.95, 0.98, 1],
-                ease: "easeInOut",
-              }}
-            />
-
-            {/* Soft chest accent (subtle red neon hint) */}
-            <span className="absolute inset-x-0 bottom-10 mx-auto h-24 w-24 rounded-full bg-primary/30 blur-3xl" />
           </motion.div>
         </motion.div>
+
+        {/* Ultra-soft ground shadow (animated with float) */}
+        <motion.div
+          className="absolute left-1/2 -bottom-6 -translate-x-1/2 rounded-[50%] bg-black/70 blur-2xl pointer-events-none"
+          style={{ width: 280, height: 36 }}
+          animate={{
+            scaleX: [1, 0.86, 1],
+            opacity: [0.55, 0.35, 0.55],
+          }}
+          transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        />
       </motion.div>
 
-      {/* Floating spec cards (spring physics + parallax) */}
-      <FloatCard
-        text="More booked jobs"
-        icon={PhoneCall}
-        style={{ top: "6%", left: "2%", x: card1X, y: card1Y }}
-        delay={0}
-      />
-      <FloatCard
-        text="Revenue tracked"
-        icon={BarChart3}
-        style={{ bottom: "10%", right: "2%", x: card2X, y: card2Y }}
-        delay={0.4}
-      />
-      <FloatCard
-        text="UI/UX Systems"
-        icon={Palette}
-        style={{ top: "44%", left: "-4%", x: card3X, y: card3Y }}
-        delay={0.8}
-      />
-      <FloatCard
-        text="More conversions"
-        icon={MousePointerClick}
-        style={{ top: "12%", right: "-2%", x: card4X, y: card4Y }}
-        delay={1.2}
-      />
-      <FloatCard
-        text="Design that converts"
-        icon={Sparkles}
-        style={{ bottom: "4%", left: "20%", x: card1X, y: card1Y }}
-        delay={1.6}
-        accent
-      />
+      {/* Floating glass pills */}
+      <FloatCard text="More booked jobs" icon={PhoneCall} style={{ top: "8%", left: "0%", x: c1X, y: c1Y }} delay={0} />
+      <FloatCard text="Revenue tracked" icon={BarChart3} style={{ bottom: "12%", right: "0%", x: c2X, y: c2Y }} delay={0.4} />
+      <FloatCard text="UI/UX Systems" icon={Palette} style={{ top: "46%", left: "-4%", x: c3X, y: c3Y }} delay={0.8} />
+      <FloatCard text="More conversions" icon={MousePointerClick} style={{ top: "14%", right: "-2%", x: c4X, y: c4Y }} delay={1.2} />
+      <FloatCard text="Design that converts" icon={Sparkles} style={{ bottom: "6%", left: "22%", x: c1X, y: c1Y }} delay={1.6} accent />
     </motion.div>
   );
 }
@@ -294,16 +265,12 @@ function FloatCard({
 }) {
   return (
     <motion.div
-      className={`absolute z-20 glass-strong rounded-2xl px-4 py-2.5 flex items-center gap-2 text-sm shadow-elegant ${
+      className={`absolute z-20 backdrop-blur-xl bg-white/[0.06] border border-white/10 rounded-2xl px-4 py-2.5 flex items-center gap-2 text-sm shadow-[0_10px_40px_-10px_rgba(0,0,0,0.6)] ${
         accent ? "ring-1 ring-primary/40" : ""
       }`}
       style={style}
       initial={{ opacity: 0, scale: 0.7, y: 20 }}
-      animate={{
-        opacity: 1,
-        scale: 1,
-        y: [0, -10, 0],
-      }}
+      animate={{ opacity: 1, scale: 1, y: [0, -10, 0] }}
       transition={{
         opacity: { duration: 0.8, delay },
         scale: { type: "spring", stiffness: 160, damping: 14, delay },
