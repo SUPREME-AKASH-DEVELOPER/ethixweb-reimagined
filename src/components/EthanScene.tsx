@@ -114,61 +114,46 @@ export function EthanScene() {
   return (
     <motion.div
       ref={wrapRef}
-      initial={{ opacity: 0, scale: 0.9, y: 30 }}
+      initial={{ opacity: 0, scale: 0.92, y: 30 }}
       animate={{ opacity: 1, scale: 1, y: 0 }}
       transition={{ duration: 1.1, ease: [0.22, 1, 0.36, 1] }}
-      className="relative flex justify-center items-end min-h-[640px] w-full"
-      style={{ perspective: 1400 }}
+      className="relative flex justify-center items-end min-h-[680px] w-full"
+      style={{ perspective: 1600 }}
     >
       {/* Particle canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none" />
+      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none opacity-70" />
 
-      {/* Ambient red glow (right rim light) */}
+      {/* Ambient brand glow that blends into page bg (no rim halo around character) */}
       <motion.div
-        className="absolute pointer-events-none rounded-full blur-[110px] opacity-80"
+        className="absolute pointer-events-none rounded-full blur-[140px]"
         style={{
           x: redX,
           y: redY,
-          right: "8%",
-          top: "18%",
-          width: 380,
-          height: 380,
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.7), transparent 65%)",
+          right: "4%",
+          top: "10%",
+          width: 520,
+          height: 520,
+          background: "radial-gradient(circle, hsl(var(--primary) / 0.35), transparent 70%)",
         }}
-        animate={{ opacity: [0.55, 0.9, 0.55] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+        animate={{ opacity: [0.5, 0.8, 0.5] }}
+        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
       />
-
-      {/* Ambient blue glow (left rim light) */}
       <motion.div
-        className="absolute pointer-events-none rounded-full blur-[120px] opacity-70"
+        className="absolute pointer-events-none rounded-full blur-[160px]"
         style={{
           x: blueX,
           y: blueY,
-          left: "6%",
-          top: "30%",
-          width: 360,
-          height: 360,
-          background: "radial-gradient(circle, hsla(220, 95%, 60%, 0.55), transparent 65%)",
+          left: "0%",
+          top: "40%",
+          width: 460,
+          height: 460,
+          background: "radial-gradient(circle, hsla(0, 70%, 25%, 0.45), transparent 70%)",
         }}
-        animate={{ opacity: [0.45, 0.75, 0.45] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        animate={{ opacity: [0.35, 0.6, 0.35] }}
+        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
       />
 
-      {/* Soft central halo for depth separation */}
-      <div
-        className="absolute pointer-events-none rounded-full blur-[80px] opacity-40"
-        style={{
-          left: "50%",
-          top: "50%",
-          width: 420,
-          height: 420,
-          transform: "translate(-50%, -50%)",
-          background: "radial-gradient(circle, hsla(0,0%,100%,0.06), transparent 70%)",
-        }}
-      />
-
-      {/* Free-floating character (no card, no border) */}
+      {/* Free-floating character — multi-layer 3D depth */}
       <motion.div
         className="relative z-10"
         style={{
@@ -180,31 +165,47 @@ export function EthanScene() {
         }}
       >
         <motion.div
-          animate={{ scale: [1, 1.018, 1] }}
-          transition={{ duration: 4.2, repeat: Infinity, ease: "easeInOut" }}
+          animate={{ scale: [1, 1.02, 1] }}
+          transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut" }}
         >
           <motion.div
-            animate={{ y: [0, -16, 0] }}
+            animate={{ y: [0, -18, 0] }}
             transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
             className="relative will-change-transform"
+            style={{ transformStyle: "preserve-3d" }}
           >
-            {/* Main character */}
+            {/* Soft contact-shadow blob behind character (depth) */}
+            <div
+              className="absolute -inset-10 rounded-full blur-3xl pointer-events-none"
+              style={{
+                background:
+                  "radial-gradient(ellipse at 50% 60%, hsl(var(--primary) / 0.18), transparent 65%)",
+                transform: "translateZ(-60px)",
+              }}
+            />
+
+            {/* Main character — no harsh shadow, blends with bg */}
             <img
               src={ethan}
               alt="Ethan — Senior creative founder at Ethixweb"
-              className="relative max-h-[640px] w-auto drop-shadow-[0_50px_60px_rgba(0,0,0,0.55)] select-none pointer-events-none"
+              className="relative max-h-[680px] w-auto select-none pointer-events-none"
               draggable={false}
+              style={{
+                filter:
+                  "drop-shadow(0 30px 40px rgba(0,0,0,0.55)) drop-shadow(0 0 60px hsl(var(--primary) / 0.18))",
+                transform: "translateZ(40px)",
+              }}
             />
           </motion.div>
         </motion.div>
 
-        {/* Ultra-soft ground shadow (animated with float) */}
+        {/* Ground shadow — soft elliptical, animated with float */}
         <motion.div
-          className="absolute left-1/2 -bottom-6 -translate-x-1/2 rounded-[50%] bg-black/70 blur-2xl pointer-events-none"
-          style={{ width: 280, height: 36 }}
+          className="absolute left-1/2 -bottom-2 -translate-x-1/2 rounded-[50%] bg-black/80 blur-2xl pointer-events-none"
+          style={{ width: 300, height: 38 }}
           animate={{
-            scaleX: [1, 0.86, 1],
-            opacity: [0.55, 0.35, 0.55],
+            scaleX: [1, 0.82, 1],
+            opacity: [0.6, 0.38, 0.6],
           }}
           transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
         />
@@ -219,6 +220,7 @@ export function EthanScene() {
     </motion.div>
   );
 }
+
 
 function FloatCard({
   text,
