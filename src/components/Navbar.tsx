@@ -11,7 +11,6 @@ const links = [
   { to: "/about", label: "About" },
   { to: "/industries", label: "Industries" },
   { to: "/services", label: "Services" },
-  { to: "/locations/kent-wa", label: "Locations" },
   { to: "/portfolio", label: "Our Work" },
   { to: "/blog", label: "Blog" },
 ];

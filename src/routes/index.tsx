@@ -9,6 +9,7 @@ import { SiteLayout } from "@/components/SiteLayout";
 import { Reveal } from "@/components/Reveal";
 import { Pricing } from "@/components/Pricing";
 import { EthanScene } from "@/components/EthanScene";
+import { GlobalNetwork } from "@/components/GlobalNetwork";
 
 export const Route = createFileRoute("/")({
   head: () => ({
@@ -56,6 +57,7 @@ function Home() {
       <Marquee />
       <Stats />
       <Services />
+      <GlobalNetwork />
       <HowWeWork />
       <Pricing />
       <TechStack />
