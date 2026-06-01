@@ -167,9 +167,9 @@ function GlobeCanvas() {
       <svg width={size} height={size} className="absolute inset-0 m-auto pointer-events-none">
         <defs>
           <linearGradient id="arc-grad" x1="0" x2="1">
-            <stop offset="0%" stopColor="hsl(var(--primary) / 0)" />
-            <stop offset="50%" stopColor="hsl(var(--primary) / 0.7)" />
-            <stop offset="100%" stopColor="hsl(var(--primary) / 0)" />
+            <stop offset="0%" stopColor="var(--primary)" stopOpacity="0" />
+            <stop offset="50%" stopColor="var(--primary)" stopOpacity="0.7" />
+            <stop offset="100%" stopColor="var(--primary)" stopOpacity="0" />
           </linearGradient>
         </defs>
         {arcs.map((a, i) => {
