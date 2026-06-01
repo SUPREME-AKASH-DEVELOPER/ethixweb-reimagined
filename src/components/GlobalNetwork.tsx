@@ -197,11 +197,11 @@ function GlobeCanvas() {
         {projected.map((p, i) =>
           p.visible ? (
             <g key={i} opacity={0.4 + p.depth * 0.6}>
-              <circle cx={p.x} cy={p.y} r={p.c.tier === "primary" ? 9 : 5} fill="hsl(var(--primary) / 0.15)">
+              <circle cx={p.x} cy={p.y} r={p.c.tier === "primary" ? 9 : 5} fill="var(--primary)" fillOpacity="0.15">
                 <animate attributeName="r" values={`${p.c.tier === "primary" ? 6 : 3};${p.c.tier === "primary" ? 14 : 9};${p.c.tier === "primary" ? 6 : 3}`} dur="2.4s" repeatCount="indefinite" />
                 <animate attributeName="opacity" values="0.7;0;0.7" dur="2.4s" repeatCount="indefinite" />
               </circle>
-              <circle cx={p.x} cy={p.y} r={p.c.tier === "primary" ? 3.5 : 2} fill="hsl(var(--primary))" />
+              <circle cx={p.x} cy={p.y} r={p.c.tier === "primary" ? 3.5 : 2} fill="var(--primary)" />
               {p.c.tier === "primary" && (
                 <text
                   x={p.x + 10}
