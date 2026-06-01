@@ -57,6 +57,7 @@ function Home() {
       <Marquee />
       <Stats />
       <Services />
+      <GlobalNetwork />
       <HowWeWork />
       <Pricing />
       <TechStack />
