@@ -42,41 +42,44 @@
 :root.dark {
   --radius: 0.875rem;
 
-  /* Premium dark palette */
-  --background: oklch(0.13 0.012 25);
+  /* Ethixweb brand palette
+     Midnight Black #0C0D10 · Deep Navy #100F18 · Dark Burgundy #180F0F
+     Deep Plum #27121D · Wine Red #391516 */
+  --background: #0C0D10;
   --foreground: oklch(0.97 0.005 30);
 
-  --charcoal: oklch(0.19 0.012 25);
-  --card: oklch(0.17 0.014 25);
+  --charcoal: #100F18;
+  --card: #180F1A;
   --card-foreground: oklch(0.97 0.005 30);
-  --popover: oklch(0.15 0.014 25);
+  --popover: #1A1018;
   --popover-foreground: oklch(0.97 0.005 30);
 
-  --primary: oklch(0.55 0.21 22);
+  --primary: #391516;
   --primary-foreground: oklch(0.98 0.005 30);
-  --primary-glow: oklch(0.65 0.24 25);
+  --primary-glow: #5a1f22;
 
-  --secondary: oklch(0.22 0.018 25);
+  --secondary: #27121D;
   --secondary-foreground: oklch(0.97 0.005 30);
-  --muted: oklch(0.2 0.012 25);
-  --muted-foreground: oklch(0.68 0.015 30);
-  --accent: oklch(0.45 0.18 18);
+  --muted: #180F0F;
+  --muted-foreground: oklch(0.68 0.015 20);
+  --accent: #27121D;
   --accent-foreground: oklch(0.98 0.005 30);
-  --destructive: oklch(0.58 0.24 25);
+  --destructive: #5a1f22;
   --destructive-foreground: oklch(0.98 0 0);
 
-  --border: oklch(0.27 0.018 25 / 60%);
-  --input: oklch(0.27 0.018 25);
-  --ring: oklch(0.55 0.21 22);
+  --border: rgba(255, 255, 255, 0.06);
+  --input: #1A1018;
+  --ring: #391516;
 
-  --gradient-brand: linear-gradient(135deg, oklch(0.55 0.21 22) 0%, oklch(0.35 0.15 15) 50%, oklch(0.18 0.02 25) 100%);
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.45 0.2 22 / 0.45), transparent 70%),
-                   radial-gradient(ellipse 60% 50% at 80% 80%, oklch(0.4 0.18 18 / 0.3), transparent 70%),
-                   linear-gradient(180deg, oklch(0.13 0.012 25), oklch(0.1 0.01 25));
-  --gradient-glow: radial-gradient(circle at center, oklch(0.6 0.24 25 / 0.4), transparent 60%);
-  --shadow-glow: 0 0 60px oklch(0.55 0.21 22 / 0.35), 0 0 120px oklch(0.55 0.21 22 / 0.15);
-  --shadow-elegant: 0 20px 60px -20px oklch(0 0 0 / 0.6), 0 0 0 1px oklch(1 0 0 / 0.04);
-  --shadow-card: 0 10px 40px -15px oklch(0 0 0 / 0.5);
+  --gradient-brand: linear-gradient(135deg, #391516 0%, #27121D 50%, #100F18 100%);
+  --gradient-hero: radial-gradient(ellipse 70% 80% at 0% 30%, rgba(16, 15, 24, 0.95), transparent 70%),
+                   radial-gradient(ellipse 70% 70% at 100% 70%, rgba(57, 21, 22, 0.6), transparent 70%),
+                   radial-gradient(ellipse 50% 50% at 100% 30%, rgba(24, 15, 15, 0.7), transparent 70%),
+                   linear-gradient(90deg, #100F18 0%, #0C0D10 50%, #180F0F 100%);
+  --gradient-glow: radial-gradient(circle at center, rgba(57, 21, 22, 0.45), transparent 60%);
+  --shadow-glow: 0 0 60px rgba(57, 21, 22, 0.4), 0 0 120px rgba(16, 15, 24, 0.3);
+  --shadow-elegant: 0 20px 60px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
+  --shadow-card: 0 10px 40px -15px rgba(0, 0, 0, 0.6);
 }
 
 :root.light {
