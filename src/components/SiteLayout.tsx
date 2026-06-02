@@ -5,17 +5,26 @@ import { EthanMascot } from "./EthanMascot";
 import { ClickSound } from "./ClickSound";
 import { ThemeProvider } from "./ThemeProvider";
 import { FilmGrain } from "./FilmGrain";
+import bgAsset from "@/assets/ethixweb-bg.png.asset.json";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
     <ThemeProvider>
-      <div className="min-h-screen bg-background text-foreground noise">
+      <div className="min-h-screen bg-background text-foreground noise relative">
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
+          style={{ backgroundImage: `url(${bgAsset.url})` }}
+        />
+        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-background/50" />
         <FilmGrain />
         <ClickSound />
-        <Navbar />
-        <main className="pt-24">{children}</main>
-        <Footer />
-        <EthanMascot />
+        <div className="relative z-10">
+          <Navbar />
+          <main className="pt-24">{children}</main>
+          <Footer />
+          <EthanMascot />
+        </div>
       </div>
     </ThemeProvider>
   );
