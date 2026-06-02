@@ -126,6 +126,12 @@ html { transition: background-color 0.4s ease, color 0.4s ease; }
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
+    background-image:
+      radial-gradient(ellipse 60% 70% at 0% 20%, rgba(16, 15, 24, 0.85), transparent 60%),
+      radial-gradient(ellipse 55% 65% at 100% 80%, rgba(57, 21, 22, 0.5), transparent 65%),
+      radial-gradient(ellipse 45% 55% at 100% 25%, rgba(24, 15, 15, 0.55), transparent 65%),
+      linear-gradient(95deg, #100F18 0%, #0C0D10 45%, #0C0D10 60%, #180F0F 100%);
+    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
