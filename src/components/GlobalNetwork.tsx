@@ -188,9 +188,9 @@ function GlobeStage() {
 
       // atmosphere outer glow
       const atmo = ctx.createRadialGradient(cx, cy, R * 0.92, cx, cy, R * 1.22);
-      atmo.addColorStop(0, "rgba(255, 90, 70, 0.25)");
-      atmo.addColorStop(0.5, "rgba(220, 38, 38, 0.08)");
-      atmo.addColorStop(1, "rgba(220, 38, 38, 0)");
+      atmo.addColorStop(0, "rgba(57, 21, 22, 0.4)");
+      atmo.addColorStop(0.5, "rgba(39, 18, 29, 0.12)");
+      atmo.addColorStop(1, "rgba(16, 15, 24, 0)");
       ctx.fillStyle = atmo;
       ctx.beginPath();
       ctx.arc(cx, cy, R * 1.22, 0, Math.PI * 2);
@@ -205,9 +205,9 @@ function GlobeStage() {
         cy,
         R
       );
-      sphere.addColorStop(0, "rgba(60, 18, 22, 0.55)");
-      sphere.addColorStop(0.6, "rgba(20, 8, 12, 0.4)");
-      sphere.addColorStop(1, "rgba(0, 0, 0, 0.0)");
+      sphere.addColorStop(0, "rgba(39, 18, 29, 0.6)");
+      sphere.addColorStop(0.6, "rgba(16, 15, 24, 0.5)");
+      sphere.addColorStop(1, "rgba(12, 13, 16, 0.0)");
       ctx.fillStyle = sphere;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
@@ -229,9 +229,11 @@ function GlobeStage() {
         const sz = 0.35 + depth * 0.95;
         const warm = Math.abs(p.lat) < 28;
         if (warm) {
-          ctx.fillStyle = `rgba(255, ${140 + Math.floor(depth * 60)}, ${90 + Math.floor(depth * 50)}, ${alpha})`;
+          // wine-red equator band
+          ctx.fillStyle = `rgba(${140 + Math.floor(depth * 60)}, ${55 + Math.floor(depth * 25)}, ${60 + Math.floor(depth * 25)}, ${alpha})`;
         } else {
-          ctx.fillStyle = `rgba(${210 + Math.floor(depth * 45)}, ${70 + Math.floor(depth * 40)}, ${80 + Math.floor(depth * 30)}, ${alpha * 0.85})`;
+          // deep-navy/plum poles
+          ctx.fillStyle = `rgba(${90 + Math.floor(depth * 50)}, ${75 + Math.floor(depth * 40)}, ${110 + Math.floor(depth * 50)}, ${alpha * 0.85})`;
         }
         ctx.beginPath();
         ctx.arc(px, py, sz, 0, Math.PI * 2);
@@ -247,8 +249,8 @@ function GlobeStage() {
         cy - R * 0.5,
         R * 0.5
       );
-      spec.addColorStop(0, "rgba(255, 200, 180, 0.18)");
-      spec.addColorStop(1, "rgba(255, 200, 180, 0)");
+      spec.addColorStop(0, "rgba(220, 180, 190, 0.14)");
+      spec.addColorStop(1, "rgba(220, 180, 190, 0)");
       ctx.fillStyle = spec;
       ctx.beginPath();
       ctx.arc(cx, cy, R, 0, Math.PI * 2);
