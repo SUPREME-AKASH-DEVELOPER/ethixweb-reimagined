@@ -12,7 +12,6 @@ import ethan from "@/assets/ethan.png";
  */
 export function EthanScene() {
   const wrapRef = useRef<HTMLDivElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
 
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
@@ -23,12 +22,6 @@ export function EthanScene() {
   const rotateX = useTransform(sy, [-1, 1], [10, -10]);
   const translateX = useTransform(sx, [-1, 1], [-22, 22]);
   const translateY = useTransform(sy, [-1, 1], [-14, 14]);
-
-  // Glow / rim lights track cursor subtly
-  const redX = useTransform(sx, [-1, 1], [-30, 30]);
-  const redY = useTransform(sy, [-1, 1], [-20, 20]);
-  const blueX = useTransform(sx, [-1, 1], [30, -30]);
-  const blueY = useTransform(sy, [-1, 1], [20, -20]);
 
   // Floating cards parallax
   const c1X = useTransform(sx, [-1, 1], [10, -10]);
@@ -54,63 +47,6 @@ export function EthanScene() {
     return () => window.removeEventListener("mousemove", onMove);
   }, [mx, my]);
 
-  // Particle backdrop
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    if (!ctx) return;
-
-    let raf = 0;
-    const dpr = Math.min(window.devicePixelRatio || 1, 2);
-    const resize = () => {
-      const { clientWidth: w, clientHeight: h } = canvas;
-      canvas.width = w * dpr;
-      canvas.height = h * dpr;
-      ctx.setTransform(1, 0, 0, 1, 0, 0);
-      ctx.scale(dpr, dpr);
-    };
-    resize();
-
-    type P = { x: number; y: number; vx: number; vy: number; r: number; a: number; hue: number };
-    const W = () => canvas.clientWidth;
-    const H = () => canvas.clientHeight;
-    const particles: P[] = Array.from({ length: 50 }, () => ({
-      x: Math.random() * W(),
-      y: Math.random() * H(),
-      vx: (Math.random() - 0.5) * 0.25,
-      vy: (Math.random() - 0.5) * 0.25,
-      r: Math.random() * 1.6 + 0.4,
-      a: Math.random() * 0.5 + 0.2,
-      hue: Math.random() > 0.55 ? 0 : 215,
-    }));
-
-    const draw = () => {
-      ctx.clearRect(0, 0, W(), H());
-      for (const p of particles) {
-        p.x += p.vx;
-        p.y += p.vy;
-        if (p.x < 0 || p.x > W()) p.vx *= -1;
-        if (p.y < 0 || p.y > H()) p.vy *= -1;
-        const grad = ctx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.r * 9);
-        grad.addColorStop(0, `hsla(${p.hue}, 90%, 62%, ${p.a})`);
-        grad.addColorStop(1, "hsla(0,0%,0%,0)");
-        ctx.fillStyle = grad;
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, p.r * 9, 0, Math.PI * 2);
-        ctx.fill();
-      }
-      raf = requestAnimationFrame(draw);
-    };
-    draw();
-    const ro = new ResizeObserver(resize);
-    ro.observe(canvas);
-    return () => {
-      cancelAnimationFrame(raf);
-      ro.disconnect();
-    };
-  }, []);
-
   return (
     <motion.div
       ref={wrapRef}
@@ -120,39 +56,6 @@ export function EthanScene() {
       className="relative flex justify-center items-end min-h-[680px] w-full"
       style={{ perspective: 1600 }}
     >
-      {/* Particle canvas */}
-      <canvas ref={canvasRef} className="absolute inset-0 w-full h-full pointer-events-none opacity-70" />
-
-      {/* Ambient brand glow that blends into page bg (no rim halo around character) */}
-      <motion.div
-        className="absolute pointer-events-none rounded-full blur-[140px]"
-        style={{
-          x: redX,
-          y: redY,
-          right: "4%",
-          top: "10%",
-          width: 520,
-          height: 520,
-          background: "radial-gradient(circle, hsl(var(--primary) / 0.35), transparent 70%)",
-        }}
-        animate={{ opacity: [0.5, 0.8, 0.5] }}
-        transition={{ duration: 7, repeat: Infinity, ease: "easeInOut" }}
-      />
-      <motion.div
-        className="absolute pointer-events-none rounded-full blur-[160px]"
-        style={{
-          x: blueX,
-          y: blueY,
-          left: "0%",
-          top: "40%",
-          width: 460,
-          height: 460,
-          background: "radial-gradient(circle, hsla(0, 70%, 25%, 0.45), transparent 70%)",
-        }}
-        animate={{ opacity: [0.35, 0.6, 0.35] }}
-        transition={{ duration: 9, repeat: Infinity, ease: "easeInOut", delay: 1.2 }}
-      />
-
       {/* Free-floating character — multi-layer 3D depth */}
       <motion.div
         className="relative z-10"

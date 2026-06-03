@@ -64,7 +64,6 @@ function Page() {
         <div className="mx-auto max-w-7xl grid lg:grid-cols-[1fr_1.4fr] gap-12 items-center">
           <Reveal>
             <div className="relative">
-              <div className="absolute -inset-8 bg-gradient-glow blur-3xl opacity-50" />
               <div className="relative glass-strong rounded-[2rem] p-10 text-center">
                 <Users className="h-10 w-10 text-primary mx-auto mb-4" />
                 <p className="text-sm uppercase tracking-widest text-primary">Interesting Fact</p>

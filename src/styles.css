@@ -72,11 +72,6 @@
   --ring: #391516;
 
   --gradient-brand: linear-gradient(135deg, #391516 0%, #27121D 50%, #100F18 100%);
-  --gradient-hero: radial-gradient(ellipse 70% 80% at 0% 30%, rgba(16, 15, 24, 0.95), transparent 70%),
-                   radial-gradient(ellipse 70% 70% at 100% 70%, rgba(57, 21, 22, 0.6), transparent 70%),
-                   radial-gradient(ellipse 50% 50% at 100% 30%, rgba(24, 15, 15, 0.7), transparent 70%),
-                   linear-gradient(90deg, #100F18 0%, #0C0D10 50%, #180F0F 100%);
-  --gradient-glow: radial-gradient(circle at center, rgba(57, 21, 22, 0.45), transparent 60%);
   --shadow-glow: 0 0 60px rgba(57, 21, 22, 0.4), 0 0 120px rgba(16, 15, 24, 0.3);
   --shadow-elegant: 0 20px 60px -20px rgba(0, 0, 0, 0.7), 0 0 0 1px rgba(255, 255, 255, 0.04);
   --shadow-card: 0 10px 40px -15px rgba(0, 0, 0, 0.6);
@@ -110,10 +105,6 @@
   --ring: oklch(0.5 0.22 22);
 
   --gradient-brand: linear-gradient(135deg, oklch(0.55 0.22 22) 0%, oklch(0.45 0.2 18) 50%, oklch(0.35 0.15 15) 100%);
-  --gradient-hero: radial-gradient(ellipse 80% 60% at 50% 0%, oklch(0.7 0.18 22 / 0.22), transparent 70%),
-                   radial-gradient(ellipse 60% 50% at 80% 80%, oklch(0.65 0.16 18 / 0.16), transparent 70%),
-                   linear-gradient(180deg, oklch(0.985 0.004 60), oklch(0.96 0.006 60));
-  --gradient-glow: radial-gradient(circle at center, oklch(0.6 0.24 25 / 0.25), transparent 60%);
   --shadow-glow: 0 0 60px oklch(0.55 0.21 22 / 0.18), 0 0 120px oklch(0.55 0.21 22 / 0.08);
   --shadow-elegant: 0 20px 60px -20px oklch(0.2 0.015 25 / 0.18), 0 0 0 1px oklch(0.2 0.015 25 / 0.06);
   --shadow-card: 0 10px 40px -15px oklch(0.2 0.015 25 / 0.12);
@@ -126,12 +117,6 @@ html { transition: background-color 0.4s ease, color 0.4s ease; }
   html { scroll-behavior: smooth; }
   body {
     background-color: var(--color-background);
-    background-image:
-      radial-gradient(ellipse 60% 70% at 0% 20%, rgba(16, 15, 24, 0.85), transparent 60%),
-      radial-gradient(ellipse 55% 65% at 100% 80%, rgba(57, 21, 22, 0.5), transparent 65%),
-      radial-gradient(ellipse 45% 55% at 100% 25%, rgba(24, 15, 15, 0.55), transparent 65%),
-      linear-gradient(95deg, #100F18 0%, #0C0D10 45%, #0C0D10 60%, #180F0F 100%);
-    background-attachment: fixed;
     color: var(--color-foreground);
     font-family: var(--font-sans);
     font-feature-settings: "ss01", "cv11";
@@ -144,8 +129,6 @@ html { transition: background-color 0.4s ease, color 0.4s ease; }
 
 @layer utilities {
   .bg-gradient-brand { background: var(--gradient-brand); }
-  .bg-gradient-hero { background: var(--gradient-hero); }
-  .bg-gradient-glow { background: var(--gradient-glow); }
   .shadow-glow { box-shadow: var(--shadow-glow); }
   .shadow-elegant { box-shadow: var(--shadow-elegant); }
   .shadow-card { box-shadow: var(--shadow-card); }
@@ -172,39 +155,10 @@ html { transition: background-color 0.4s ease, color 0.4s ease; }
     background-clip: text;
     color: transparent;
   }
-  .grid-bg {
-    background-image:
-      linear-gradient(oklch(1 0 0 / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, oklch(1 0 0 / 0.03) 1px, transparent 1px);
-    background-size: 48px 48px;
-  }
-  .noise {
-    position: relative;
-  }
-  .noise::after {
-    content: "";
-    position: absolute; inset: 0; pointer-events: none;
-    background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9'/></filter><rect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/></svg>");
-    opacity: 0.04; mix-blend-mode: overlay;
-  }
-
   @keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-12px); } }
   @keyframes pulse-glow { 0%,100% { opacity: 0.5; transform: scale(1); } 50% { opacity: 1; transform: scale(1.05); } }
   @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
-  @keyframes grain {
-    0%, 100% { transform: translate(0, 0); }
-    10% { transform: translate(-3%, -2%); }
-    20% { transform: translate(-5%, 1%); }
-    30% { transform: translate(3%, -3%); }
-    40% { transform: translate(2%, 4%); }
-    50% { transform: translate(-2%, 3%); }
-    60% { transform: translate(-4%, -1%); }
-    70% { transform: translate(4%, 2%); }
-    80% { transform: translate(-1%, -4%); }
-    90% { transform: translate(2%, 3%); }
-  }
   .animate-float { animation: float 6s ease-in-out infinite; }
   .animate-pulse-glow { animation: pulse-glow 4s ease-in-out infinite; }
   .animate-marquee { animation: marquee 30s linear infinite; }
-  .animate-grain { animation: grain 8s steps(10) infinite; }
 }

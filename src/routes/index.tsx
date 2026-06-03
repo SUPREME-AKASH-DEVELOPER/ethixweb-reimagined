@@ -71,10 +71,6 @@ function Home() {
 function Hero() {
   return (
     <section className="relative overflow-hidden -mt-24 pt-32 pb-24">
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      <div className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-[120px] animate-pulse-glow" />
-      <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-accent/30 blur-[140px]" />
-
       <div className="relative mx-auto max-w-7xl px-6 pt-16 grid lg:grid-cols-[1.2fr_1fr] gap-12 items-center">
         <div>
           <Reveal>
@@ -315,7 +311,6 @@ function CTA() {
     <section className="py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-brand shadow-glow p-12 lg:p-20 text-center">
-          <div className="absolute inset-0 grid-bg opacity-30" />
           <Reveal>
             <h2 className="relative font-display text-4xl lg:text-6xl font-bold leading-tight">
               Let's get you more<br />booked jobs.
