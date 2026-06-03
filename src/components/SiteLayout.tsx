@@ -16,7 +16,14 @@ export function SiteLayout({ children }: { children: ReactNode }) {
           className="pointer-events-none fixed inset-0 z-0 bg-cover bg-center bg-no-repeat"
           style={{ backgroundImage: `url(${bgAsset.url})` }}
         />
-        <div aria-hidden className="pointer-events-none fixed inset-0 z-0 bg-background/50" />
+        <div
+          aria-hidden
+          className="pointer-events-none fixed inset-0 z-0"
+          style={{
+            background:
+              "radial-gradient(ellipse at 30% 20%, rgba(12,13,16,0.35), rgba(12,13,16,0.7) 60%, rgba(12,13,16,0.85))",
+          }}
+        />
         <FilmGrain />
         <ClickSound />
         <div className="relative z-10">

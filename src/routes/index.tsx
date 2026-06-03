@@ -70,7 +70,7 @@ function Home() {
 
 function Hero() {
   return (
-    <section className="relative overflow-hidden -mt-24 pt-32 pb-24 bg-gradient-hero">
+    <section className="relative overflow-hidden -mt-24 pt-32 pb-24">
       <div className="absolute inset-0 grid-bg opacity-50" />
       <div className="absolute top-1/4 -left-32 h-96 w-96 rounded-full bg-primary/30 blur-[120px] animate-pulse-glow" />
       <div className="absolute bottom-0 right-0 h-[28rem] w-[28rem] rounded-full bg-accent/30 blur-[140px]" />
