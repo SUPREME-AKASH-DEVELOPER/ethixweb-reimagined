@@ -4,7 +4,8 @@ import { Footer } from "./Footer";
 import { EthanMascot } from "./EthanMascot";
 import { ClickSound } from "./ClickSound";
 import { ThemeProvider } from "./ThemeProvider";
-import backgroundAsset from "@/assets/ethixweb-business-cards-bg.png.asset.json";
+
+const BACKGROUND_IMAGE_URL = "/__l5e/assets-v1/64bc2ea6-b45f-4c1f-a80f-356b0ca006de/ethixweb-business-cards-bg.png";
 
 export function SiteLayout({ children }: { children: ReactNode }) {
   return (
@@ -12,7 +13,7 @@ export function SiteLayout({ children }: { children: ReactNode }) {
       <div className="min-h-screen bg-background text-foreground relative">
         <img
           aria-hidden
-          src={backgroundAsset.url}
+          src={BACKGROUND_IMAGE_URL}
           alt=""
           className="fixed inset-0 z-0 h-screen w-screen object-cover object-center pointer-events-none select-none"
         />
