@@ -311,7 +311,6 @@ function CTA() {
     <section className="py-24 px-6">
       <div className="mx-auto max-w-7xl">
         <div className="relative overflow-hidden rounded-[2.5rem] bg-gradient-brand shadow-glow p-12 lg:p-20 text-center">
-          <div className="absolute inset-0 grid-bg opacity-30" />
           <Reveal>
             <h2 className="relative font-display text-4xl lg:text-6xl font-bold leading-tight">
               Let's get you more<br />booked jobs.
