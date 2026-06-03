@@ -3,9 +3,7 @@ import { Reveal } from "./Reveal";
 
 export function PageHero({ eyebrow, title, children }: { eyebrow: ReactNode; title: string; children?: ReactNode }) {
   return (
-    <section className="relative -mt-24 pt-40 pb-20 bg-gradient-hero overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-50" />
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 h-72 w-[40rem] bg-primary/30 blur-[120px] rounded-full" />
+    <section className="relative -mt-24 pt-40 pb-20 overflow-hidden">
       <div className="relative mx-auto max-w-5xl px-6 text-center">
         <Reveal>
           <p className="text-xs uppercase tracking-[0.3em] text-primary">{eyebrow}</p>

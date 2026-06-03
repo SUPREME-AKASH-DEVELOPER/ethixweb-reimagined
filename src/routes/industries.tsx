@@ -81,7 +81,6 @@ function IndustryBlock({
   return (
     <section className="px-6 py-20">
       <div className="mx-auto max-w-7xl glass-strong rounded-[2rem] overflow-hidden relative">
-        <div className="absolute inset-0 bg-gradient-hero opacity-60" />
         <div className={`relative grid lg:grid-cols-2 gap-10 p-10 lg:p-16 items-start ${flipped ? "lg:[&>*:first-child]:order-2" : ""}`}>
           <Reveal>
             <div>

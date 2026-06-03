@@ -638,7 +638,6 @@ function ActivityTicker() {
 export function GlobalNetwork() {
   return (
     <section className="relative py-28 px-6 overflow-hidden">
-      <div className="absolute inset-0 grid-bg opacity-30 pointer-events-none" />
       <div className="absolute top-1/3 left-1/2 -translate-x-1/2 h-[44rem] w-[44rem] rounded-full bg-primary/10 blur-[160px] pointer-events-none" />
 
       <div className="relative mx-auto max-w-7xl">
